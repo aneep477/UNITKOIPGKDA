@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Tarikh Tugasan IPGM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            transition: all 0.3s ease-in-out;
+        }
+        .result-card {
+             background: linear-gradient(135deg, #43a047 0%, #1b5e20 100%);
+             color: white;
+        }
+        .step-number {
+            background-color: #4f46e5;
+            color: white;
+            border-radius: 9999px;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        input:disabled, select:disabled {
+            background-color: #f3f4f6;
+            cursor: not-allowed;
+        }
+        button:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+        .info-box {
+            background-color: #eef2ff;
+            border-left: 4px solid #4f46e5;
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.875rem;
+            color: #4338ca;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-2xl mx-auto">
+        <!-- Bahagian Logo -->
+        <div class="text-center mb-6">
+            <img src="https://www.mytc.gov.my/images/hotels/hotel_5139_o83bu1cv7e01rfjyri6j.png" alt="Logo IPG Kampus Darul Aman" class="mx-auto h-24 w-auto" onerror="this.style.display='none'">
+        </div>
+
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Kalkulator Tarikh Tugasan IPGM</h1>
+            <p class="text-gray-600 mt-2">Pengiraan automatik berdasarkan peraturan Kalendar Akademik IPGM.</p>
+        </div>
+
+        <div class="space-y-8">
+            <!-- Langkah 1: Kira Jumlah Hari -->
+            <div class="card">
+                <div class="flex items-start mb-6">
+                    <div class="step-number">1</div>
+                    <div class="ml-4">
+                        <h2 class="text-2xl font-semibold text-gray-700">Data Pentaksiran Berterusan</h2>
+                        <p class="text-sm text-gray-500">Masukkan maklumat dari RMK/MK anda.</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label for="jumlahMingguKuliah" class="block text-sm font-medium text-gray-700">Jumlah Minggu Interaksi Kuliah</label>
+                        <select id="jumlahMingguKuliah" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="14">14 Minggu (42 Hari Asas)</option>
+                            <option value="11">11 Minggu (33 Hari Asas)</option>
+                            <option value="9">9 Minggu (27 Hari Asas)</option>
+                            <option value="8">8 Minggu (24 Hari Asas)</option>
+                            <option value="7">7 Minggu (21 Hari Asas)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="jppTugasan" class="block text-sm font-medium text-gray-700">JPP Tugasan Spesifik (Jam)</label>
+                        <input type="number" id="jppTugasan" min="1" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Contoh: 8">
+                    </div>
+                     <div>
+                        <label for="jppTotal" class="block text-sm font-medium text-gray-700">Jumlah JPP Pentaksiran Berterusan (Jam)</label>
+                        <input type="number" id="jppTotal" min="1" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Contoh: 14">
+                    </div>
+                </div>
+
+                <div class="info-box mt-6">
+                    <p><b>Formula Pengiraan Hari:</b><br> (JPP Tugasan × Hari Asas) / Jumlah JPP</p>
+                </div>
+
+                <button id="calculateDaysBtn" class="mt-6 w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-transform transform hover:scale-105">
+                    Kira Tempoh Hari Tugasan
+                </button>
+            </div>
+
+            <!-- Langkah 2: Kira Tarikh Akhir -->
+            <div id="step2" class="card opacity-50">
+                 <div class="flex items-start mb-6">
+                    <div class="step-number">2</div>
+                     <div class="ml-4">
+                        <h2 class="text-2xl font-semibold text-gray-700">Penetapan Tarikh</h2>
+                        <p class="text-sm text-gray-500">Dapatkan tarikh akhir pelaksanaan.</p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Tempoh Hari Tugasan (dihasilkan)</label>
+                        <input type="text" id="duration" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 font-bold text-lg" readonly>
+                    </div>
+                    <div>
+                        <label for="startDate" class="block text-sm font-medium text-gray-700">Tarikh Mula Tugasan</label>
+                        <input type="date" id="startDate" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" disabled>
+                    </div>
+                </div>
+                 <button id="calculateDateBtn" class="mt-6 w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-transform transform hover:scale-105" disabled>
+                    Dapatkan Tarikh Akhir
+                </button>
+            </div>
+            
+            <!-- Bahagian Output -->
+            <div id="result" class="card result-card text-center flex flex-col justify-center items-center h-full hidden">
+                <p class="text-lg font-medium opacity-80">Tarikh Akhir Pelaksanaan Ialah:</p>
+                <p id="endDate" class="text-4xl font-bold mt-2">-</p>
+            </div>
+            <div id="error-message" class="card bg-red-100 text-red-700 text-center hidden">
+                <p id="error-text"></p>
+            </div>
+        </div>
+
+        <!-- Senarai Cuti Umum -->
+        <div class="card mt-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">Cuti Umum 2025 (Dikecualikan)</h3>
+            <p class="text-sm text-gray-500 mb-4">Hari Jumaat dan cuti umum di bawah tidak akan dikira dalam tempoh pelaksanaan.</p>
+            <ul id="holidayList" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-2 text-gray-600 text-sm"></ul>
+        </div>
+        
+        <!-- Bahagian Footer -->
+        <footer class="text-center text-xs text-gray-500 mt-8 pb-4">
+            <p>Sistem ini disediakan oleh Haniff Faizal Bin Chek Ani</p>
+            <p>Unit Kokurikulum, IPG Kampus Darul Aman, 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- PANGKALAN DATA CUTI UMUM 2025 ---
+        const publicHolidays2025 = [
+            { date: '2025-01-01', name: 'Tahun Baru' }, { date: '2025-01-29', name: 'Tahun Baru Cina' }, { date: '2025-01-30', name: 'Tahun Baru Cina (Hari Kedua)' }, { date: '2025-02-11', name: 'Hari Thaipusam' }, { date: '2025-03-29', name: 'Hari Raya Aidilfitri' }, { date: '2025-05-01', name: 'Hari Pekerja' }, { date: '2025-05-12', name: 'Hari Wesak' }, { date: '2025-06-02', name: 'Hari Keputeraan YDP Agong' }, { date: '2025-06-06', name: 'Hari Raya Haji' }, { date: '2025-06-27', name: 'Awal Muharram' }, { date: '2025-08-31', name: 'Hari Kebangsaan' }, { date: '2025-09-16', name: 'Hari Malaysia' }, { date: '2025-09-25', name: 'Maulidur Rasul' }, { date: '2025-10-20', name: 'Hari Deepavali' }, { date: '2025-12-25', name: 'Hari Krismas' }
+        ];
+        const holidaySet = new Set(publicHolidays2025.map(h => h.date));
+
+        // --- ELEMEN DOM ---
+        const jumlahMingguKuliahSelect = document.getElementById('jumlahMingguKuliah');
+        const jppTugasanInput = document.getElementById('jppTugasan');
+        const jppTotalInput = document.getElementById('jppTotal');
+        const calculateDaysBtn = document.getElementById('calculateDaysBtn');
+        
+        const step2Div = document.getElementById('step2');
+        const durationInput = document.getElementById('duration');
+        const startDateInput = document.getElementById('startDate');
+        const calculateDateBtn = document.getElementById('calculateDateBtn');
+        
+        const resultDiv = document.getElementById('result');
+        const endDateP = document.getElementById('endDate');
+        const holidayListUl = document.getElementById('holidayList');
+        const errorDiv = document.getElementById('error-message');
+        const errorText = document.getElementById('error-text');
+
+        // --- FUNGSI ---
+        function displayHolidays() {
+            holidayListUl.innerHTML = '';
+            const formatter = new Intl.DateTimeFormat('ms-MY', { day: 'numeric', month: 'long' });
+            publicHolidays2025.forEach(holiday => {
+                const [year, month, day] = holiday.date.split('-').map(Number);
+                const li = document.createElement('li');
+                li.textContent = `${formatter.format(new Date(Date.UTC(year, month - 1, day)))} - ${holiday.name}`;
+                holidayListUl.appendChild(li);
+            });
+        }
+
+        function isExcludedDay(date) {
+            const isFriday = date.getUTCDay() === 5;
+            const dateString = date.toISOString().slice(0, 10);
+            const isHoliday = holidaySet.has(dateString);
+            return isFriday || isHoliday;
+        }
+        
+        function calculateFinalDate(startDate, duration) {
+             let currentDate = new Date(startDate.getTime());
+             let daysToCount = duration;
+
+             while (daysToCount > 0) {
+                 if (!isExcludedDay(currentDate)) {
+                     daysToCount--;
+                 }
+                 
+                 if (daysToCount > 0) {
+                     currentDate.setUTCDate(currentDate.getUTCDate() + 1);
+                 }
+             }
+             return currentDate;
+        }
+
+        function formatResultDate(date) {
+            return new Intl.DateTimeFormat('ms-MY', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(date);
+        }
+        
+        function showError(message) {
+            errorText.textContent = message;
+            errorDiv.classList.remove('hidden');
+            resultDiv.classList.add('hidden');
+        }
+
+        function hideError() {
+            errorDiv.classList.add('hidden');
+        }
+
+        // --- EVENT LISTENERS ---
+        calculateDaysBtn.addEventListener('click', () => {
+            const minggu = parseInt(jumlahMingguKuliahSelect.value, 10);
+            const jppTugasan = parseFloat(jppTugasanInput.value);
+            const jppTotal = parseFloat(jppTotalInput.value);
+
+            if (!minggu || !jppTugasan || !jppTotal || jppTugasan <= 0 || jppTotal <= 0) {
+                showError('Sila masukkan semua nilai JPP yang sah di Langkah 1.');
+                return;
+            }
+            
+            hideError();
+            
+            let baseWorkingDays;
+            if (minggu === 14) baseWorkingDays = 42;
+            else if (minggu === 11) baseWorkingDays = 33;
+            else if (minggu === 9) baseWorkingDays = 27;
+            else if (minggu === 8) baseWorkingDays = 24;
+            else if (minggu === 7) baseWorkingDays = 21;
+            else { 
+                baseWorkingDays = (minggu / 2) * 6;
+            }
+
+            // Menggunakan Math.round() untuk membundarkan kepada nombor bulat terdekat
+            const finalDuration = Math.round((jppTugasan * baseWorkingDays) / jppTotal);
+            
+            durationInput.value = `${finalDuration} hari`;
+            durationInput.dataset.days = finalDuration;
+            
+            step2Div.classList.remove('opacity-50');
+            startDateInput.disabled = false;
+            calculateDateBtn.disabled = false;
+        });
+
+        calculateDateBtn.addEventListener('click', () => {
+            const startDateValue = startDateInput.value;
+            const durationValue = parseInt(durationInput.dataset.days, 10);
+
+            if (!startDateValue) {
+                showError('Sila masukkan Tarikh Mula di Langkah 2.');
+                return;
+            }
+            
+            hideError();
+
+            const [year, month, day] = startDateValue.split('-').map(Number);
+            const startDate = new Date(Date.UTC(year, month - 1, day));
+            
+            const endDate = calculateFinalDate(startDate, durationValue);
+            
+            endDateP.textContent = formatResultDate(endDate);
+            resultDiv.classList.remove('hidden');
+        });
+
+        // --- INISIALISASI ---
+        displayHolidays();
+    </script>
+</body>
+</html>
