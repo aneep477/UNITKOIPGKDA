@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Tarikh Tugasan IPGM</title>
+    <title>Sistem Kalkulator Tarikh Tugasan </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,8 +63,8 @@
         </div>
 
         <div class="text-center mb-8">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Kalkulator Tarikh Tugasan IPGM</h1>
-            <p class="text-gray-600 mt-2">Pengiraan automatik berdasarkan peraturan Kalendar Akademik IPGM.</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Kalkulator Tarikh Tugasan </h1>
+            <p class="text-gray-600 mt-2">Pengiraan automatik untuk kegunaan Unit Kokurikulum IPG Kampus Darulaman.</p>
         </div>
 
         <div class="space-y-8">
@@ -139,6 +139,16 @@
             </div>
             <div id="error-message" class="card bg-red-100 text-red-700 text-center hidden">
                 <p id="error-text"></p>
+            </div>
+        </div>
+
+        <!-- Bahagian Penafian -->
+        <div class="card bg-amber-50 border-l-4 border-amber-400 mt-8">
+            <h3 class="text-lg font-semibold text-amber-800 mb-2">Penafian Penting</h3>
+            <div class="text-sm text-amber-700 space-y-2">
+                <p>Aplikasi ini disediakan sebagai rujukan dan bantuan pengiraan sahaja. Walaupun segala usaha telah dibuat untuk memastikan ketepatan, ralat pengiraan masih boleh berlaku.</p>
+                <p>Pengguna dinasihatkan untuk membuat semakan dan pengiraan manual untuk pengesahan, terutamanya jika terdapat sebarang keraguan.</p>
+                <p>Unit Kokurikulum, IPG Kampus Darulaman tidak akan bertanggungjawab atas sebarang kesulitan, kesilapan, atau kerugian yang timbul akibat penggunaan sistem ini.</p>
             </div>
         </div>
 
@@ -252,7 +262,6 @@
                 baseWorkingDays = (minggu / 2) * 6;
             }
 
-            // Menggunakan Math.round() untuk membundarkan kepada nombor bulat terdekat
             const finalDuration = Math.round((jppTugasan * baseWorkingDays) / jppTotal);
             
             durationInput.value = `${finalDuration} hari`;
