@@ -57,7 +57,6 @@
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
 
     <div class="w-full max-w-2xl mx-auto">
-        <!-- Bahagian Logo -->
         <div class="text-center mb-6">
             <img src="https://www.mytc.gov.my/images/hotels/hotel_5139_o83bu1cv7e01rfjyri6j.png" alt="Logo IPG Kampus Darul Aman" class="mx-auto h-24 w-auto" onerror="this.style.display='none'">
         </div>
@@ -68,7 +67,6 @@
         </div>
 
         <div class="space-y-8">
-            <!-- Langkah 1: Kira Jumlah Hari -->
             <div class="card">
                 <div class="flex items-start mb-6">
                     <div class="step-number">1</div>
@@ -77,7 +75,7 @@
                         <p class="text-sm text-gray-500">Masukkan maklumat dari RMK/MK anda.</p>
                     </div>
                 </div>
-                
+               
                 <div class="space-y-4">
                     <div>
                         <label for="jumlahMingguKuliah" class="block text-sm font-medium text-gray-700">Jumlah Minggu Interaksi Kuliah</label>
@@ -108,11 +106,10 @@
                 </button>
             </div>
 
-            <!-- Langkah 2: Kira Tarikh Akhir -->
             <div id="step2" class="card opacity-50">
-                 <div class="flex items-start mb-6">
+                   <div class="flex items-start mb-6">
                     <div class="step-number">2</div>
-                     <div class="ml-4">
+                       <div class="ml-4">
                         <h2 class="text-2xl font-semibold text-gray-700">Penetapan Tarikh</h2>
                         <p class="text-sm text-gray-500">Dapatkan tarikh akhir pelaksanaan.</p>
                     </div>
@@ -126,13 +123,35 @@
                         <label for="startDate" class="block text-sm font-medium text-gray-700">Tarikh Mula Tugasan</label>
                         <input type="date" id="startDate" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" disabled>
                     </div>
+                    <div class="space-y-2 mt-4">
+                        <label class="block text-sm font-semibold text-gray-700">Cuti Semester (jika ada)</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label for="sem1_start" class="block text-xs font-medium text-gray-500">Semester 1 Mula</label>
+                                <input type="date" id="sem1_start" class="mt-1 w-full px-2 py-1 border border-gray-300 rounded-lg text-sm" disabled>
+                                <label for="sem1_end" class="block text-xs font-medium text-gray-500 mt-1">Semester 1 Tamat</label>
+                                <input type="date" id="sem1_end" class="mt-1 w-full px-2 py-1 border border-gray-300 rounded-lg text-sm" disabled>
+                            </div>
+                            <div>
+                                <label for="sem2_start" class="block text-xs font-medium text-gray-500">Semester 2 Mula</label>
+                                <input type="date" id="sem2_start" class="mt-1 w-full px-2 py-1 border border-gray-300 rounded-lg text-sm" disabled>
+                                <label for="sem2_end" class="block text-xs font-medium text-gray-500 mt-1">Semester 2 Tamat</label>
+                                <input type="date" id="sem2_end" class="mt-1 w-full px-2 py-1 border border-gray-300 rounded-lg text-sm" disabled>
+                            </div>
+                            <div>
+                                <label for="sem3_start" class="block text-xs font-medium text-gray-500">Semester 3 Mula</label>
+                                <input type="date" id="sem3_start" class="mt-1 w-full px-2 py-1 border border-gray-300 rounded-lg text-sm" disabled>
+                                <label for="sem3_end" class="block text-xs font-medium text-gray-500 mt-1">Semester 3 Tamat</label>
+                                <input type="date" id="sem3_end" class="mt-1 w-full px-2 py-1 border border-gray-300 rounded-lg text-sm" disabled>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                 <button id="calculateDateBtn" class="mt-6 w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-transform transform hover:scale-105" disabled>
+                   <button id="calculateDateBtn" class="mt-6 w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-transform transform hover:scale-105" disabled>
                     Dapatkan Tarikh Akhir
                 </button>
             </div>
-            
-            <!-- Bahagian Output -->
+           
             <div id="result" class="card result-card text-center flex flex-col justify-center items-center h-full hidden">
                 <p class="text-lg font-medium opacity-80">Tarikh Akhir Pelaksanaan Ialah:</p>
                 <p id="endDate" class="text-4xl font-bold mt-2">-</p>
@@ -142,7 +161,6 @@
             </div>
         </div>
 
-        <!-- Bahagian Penafian -->
         <div class="card bg-amber-50 border-l-4 border-amber-400 mt-8">
             <h3 class="text-lg font-semibold text-amber-800 mb-2">Penafian Penting</h3>
             <div class="text-sm text-amber-700 space-y-2">
@@ -152,14 +170,12 @@
             </div>
         </div>
 
-        <!-- Senarai Cuti Umum -->
         <div class="card mt-8">
-            <h3 class="text-xl font-semibold text-gray-700 mb-4">Cuti Umum 2025 (Dikecualikan)</h3>
-            <p class="text-sm text-gray-500 mb-4">Hari Jumaat dan cuti umum di bawah tidak akan dikira dalam tempoh pelaksanaan.</p>
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">Senarai Cuti Umum 2025</h3>
+            <p class="text-sm text-gray-500 mb-4">Cuti umum ini akan **dikira** sebagai hari tugasan.</p>
             <ul id="holidayList" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-2 text-gray-600 text-sm"></ul>
         </div>
-        
-        <!-- Bahagian Footer -->
+       
         <footer class="text-center text-xs text-gray-500 mt-8 pb-4">
             <p>Sistem ini disediakan oleh Haniff Faizal Bin Chek Ani</p>
             <p>Unit Kokurikulum, IPG Kampus Darul Aman, 2025</p>
@@ -168,22 +184,28 @@
 
     <script>
         // --- PANGKALAN DATA CUTI UMUM 2025 ---
+        // Cuti umum kini DIKIRA sebagai hari tugasan. Senarai ini hanya untuk rujukan.
         const publicHolidays2025 = [
             { date: '2025-01-01', name: 'Tahun Baru' }, { date: '2025-01-29', name: 'Tahun Baru Cina' }, { date: '2025-01-30', name: 'Tahun Baru Cina (Hari Kedua)' }, { date: '2025-02-11', name: 'Hari Thaipusam' }, { date: '2025-03-29', name: 'Hari Raya Aidilfitri' }, { date: '2025-05-01', name: 'Hari Pekerja' }, { date: '2025-05-12', name: 'Hari Wesak' }, { date: '2025-06-02', name: 'Hari Keputeraan YDP Agong' }, { date: '2025-06-06', name: 'Hari Raya Haji' }, { date: '2025-06-27', name: 'Awal Muharram' }, { date: '2025-08-31', name: 'Hari Kebangsaan' }, { date: '2025-09-16', name: 'Hari Malaysia' }, { date: '2025-09-25', name: 'Maulidur Rasul' }, { date: '2025-10-20', name: 'Hari Deepavali' }, { date: '2025-12-25', name: 'Hari Krismas' }
         ];
-        const holidaySet = new Set(publicHolidays2025.map(h => h.date));
 
         // --- ELEMEN DOM ---
         const jumlahMingguKuliahSelect = document.getElementById('jumlahMingguKuliah');
         const jppTugasanInput = document.getElementById('jppTugasan');
         const jppTotalInput = document.getElementById('jppTotal');
         const calculateDaysBtn = document.getElementById('calculateDaysBtn');
-        
+       
         const step2Div = document.getElementById('step2');
         const durationInput = document.getElementById('duration');
         const startDateInput = document.getElementById('startDate');
+        const sem1StartInput = document.getElementById('sem1_start');
+        const sem1EndInput = document.getElementById('sem1_end');
+        const sem2StartInput = document.getElementById('sem2_start');
+        const sem2EndInput = document.getElementById('sem2_end');
+        const sem3StartInput = document.getElementById('sem3_start');
+        const sem3EndInput = document.getElementById('sem3_end');
         const calculateDateBtn = document.getElementById('calculateDateBtn');
-        
+       
         const resultDiv = document.getElementById('result');
         const endDateP = document.getElementById('endDate');
         const holidayListUl = document.getElementById('holidayList');
@@ -202,33 +224,47 @@
             });
         }
 
+        // Semak jika tarikh adalah hari Jumaat atau dalam cuti semester
         function isExcludedDay(date) {
             const isFriday = date.getUTCDay() === 5;
-            const dateString = date.toISOString().slice(0, 10);
-            const isHoliday = holidaySet.has(dateString);
-            return isFriday || isHoliday;
-        }
-        
-        function calculateFinalDate(startDate, duration) {
-             let currentDate = new Date(startDate.getTime());
-             let daysToCount = duration;
+            
+            const isSemesterBreak = (date, start, end) => {
+                if (!start || !end) return false;
+                const startDate = new Date(start + 'T00:00:00Z');
+                const endDate = new Date(end + 'T00:00:00Z');
+                return date >= startDate && date <= endDate;
+            };
 
-             while (daysToCount > 0) {
-                 if (!isExcludedDay(currentDate)) {
-                     daysToCount--;
-                 }
-                 
-                 if (daysToCount > 0) {
-                     currentDate.setUTCDate(currentDate.getUTCDate() + 1);
-                 }
-             }
-             return currentDate;
+            const sem1Break = isSemesterBreak(date, sem1StartInput.value, sem1EndInput.value);
+            const sem2Break = isSemesterBreak(date, sem2StartInput.value, sem2EndInput.value);
+            const sem3Break = isSemesterBreak(date, sem3StartInput.value, sem3EndInput.value);
+            
+            return isFriday || sem1Break || sem2Break || sem3Break;
+        }
+       
+        function calculateFinalDate(startDate, duration) {
+            let currentDate = new Date(startDate.getTime());
+            let daysToCount = duration;
+            let counter = 0; // Menggunakan counter untuk elakkan loop tak terhingga jika tempoh terlalu panjang
+            const maxIterations = 365 * 5; // Hadkan iterasi kepada 5 tahun
+
+            while (daysToCount > 0 && counter < maxIterations) {
+                if (!isExcludedDay(currentDate)) {
+                    daysToCount--;
+                }
+               
+                if (daysToCount > 0) {
+                    currentDate.setUTCDate(currentDate.getUTCDate() + 1);
+                }
+                counter++;
+            }
+            return currentDate;
         }
 
         function formatResultDate(date) {
             return new Intl.DateTimeFormat('ms-MY', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(date);
         }
-        
+       
         function showError(message) {
             errorText.textContent = message;
             errorDiv.classList.remove('hidden');
@@ -249,9 +285,9 @@
                 showError('Sila masukkan semua nilai JPP yang sah di Langkah 1.');
                 return;
             }
-            
+           
             hideError();
-            
+           
             let baseWorkingDays;
             if (minggu === 14) baseWorkingDays = 42;
             else if (minggu === 11) baseWorkingDays = 33;
@@ -263,12 +299,18 @@
             }
 
             const finalDuration = Math.round((jppTugasan * baseWorkingDays) / jppTotal);
-            
+           
             durationInput.value = `${finalDuration} hari`;
             durationInput.dataset.days = finalDuration;
-            
+           
             step2Div.classList.remove('opacity-50');
             startDateInput.disabled = false;
+            sem1StartInput.disabled = false;
+            sem1EndInput.disabled = false;
+            sem2StartInput.disabled = false;
+            sem2EndInput.disabled = false;
+            sem3StartInput.disabled = false;
+            sem3EndInput.disabled = false;
             calculateDateBtn.disabled = false;
         });
 
@@ -280,14 +322,14 @@
                 showError('Sila masukkan Tarikh Mula di Langkah 2.');
                 return;
             }
-            
+           
             hideError();
 
             const [year, month, day] = startDateValue.split('-').map(Number);
             const startDate = new Date(Date.UTC(year, month - 1, day));
-            
+           
             const endDate = calculateFinalDate(startDate, durationValue);
-            
+           
             endDateP.textContent = formatResultDate(endDate);
             resultDiv.classList.remove('hidden');
         });
